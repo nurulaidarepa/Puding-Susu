@@ -1,0 +1,343 @@
+html_content = """<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>PUSU - Puding Susu Premium</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        @page {
+            size: A4;
+            margin: 15mm 12mm;
+            background-color: #FFF8EA;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #4A3728;
+            background-color: #FFF8EA;
+            line-height: 1.5;
+            font-size: 10.5pt;
+        }
+        
+        /* Header / Navbar */
+        .header {
+            display: table;
+            width: 100%;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #FFD97D;
+            padding-bottom: 10px;
+        }
+        .logo {
+            display: table-cell;
+            vertical-align: middle;
+            font-size: 18pt;
+            font-weight: bold;
+            color: #4A3728;
+            letter-spacing: 1px;
+        }
+        .logo span {
+            color: #FF8B8B;
+        }
+        .nav-links {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: right;
+            font-size: 10pt;
+            font-weight: 500;
+        }
+        .nav-links span {
+            margin-left: 15px;
+            color: #6E543C;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: table;
+            width: 100%;
+            margin-bottom: 35px;
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid #F3EBDD;
+        }
+        .hero-text {
+            display: table-cell;
+            width: 55%;
+            vertical-align: middle;
+            padding-right: 20px;
+        }
+        .hero-image-container {
+            display: table-cell;
+            width: 45%;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .headline {
+            font-size: 20pt;
+            font-weight: bold;
+            color: #4A3728;
+            line-height: 1.2;
+            margin: 0 0 12px 0;
+        }
+        .subheadline {
+            font-size: 11pt;
+            color: #6E543C;
+            margin: 0 0 20px 0;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #FF8B8B;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 10pt;
+            text-align: center;
+        }
+        
+        /* Placeholders for visuals using SVG */
+        .placeholder-svg {
+            background-color: #FFF3DA;
+            border: 2px dashed #FFD97D;
+            border-radius: 8px;
+            color: #A48467;
+            font-weight: bold;
+            text-align: center;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Features Section */
+        .section-title {
+            font-size: 14pt;
+            font-weight: bold;
+            text-align: center;
+            margin: 30px 0 20px 0;
+            color: #4A3728;
+            page-break-after: avoid;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background-color: #FF8B8B;
+            margin: 6px auto 0 auto;
+            border-radius: 2px;
+        }
+        
+        .features {
+            display: table;
+            width: 100%;
+            margin-bottom: 30px;
+            table-layout: fixed;
+        }
+        .feature-card {
+            display: table-cell;
+            width: 33.33%;
+            padding: 15px;
+            text-align: center;
+            background-color: #FFFFFF;
+            border: 1px solid #F3EBDD;
+            border-radius: 8px;
+        }
+        /* Add gap effect for table-cells */
+        .feature-card-wrapper {
+            padding: 0 8px;
+        }
+        .feature-title {
+            font-weight: bold;
+            font-size: 11pt;
+            margin: 10px 0 6px 0;
+            color: #4A3728;
+        }
+        .feature-desc {
+            font-size: 9.5pt;
+            color: #6E543C;
+        }
+
+        /* Products Showcase */
+        .products-table {
+            display: table;
+            width: 100%;
+            margin-bottom: 35px;
+            table-layout: fixed;
+        }
+        .product-card {
+            display: table-cell;
+            width: 33.33%;
+            background-color: #FFFFFF;
+            border: 1px solid #F3EBDD;
+            border-radius: 8px;
+            vertical-align: top;
+        }
+        .product-info {
+            padding: 12px;
+        }
+        .product-name {
+            font-weight: bold;
+            font-size: 11pt;
+            margin: 0 0 5px 0;
+            color: #4A3728;
+        }
+        .product-desc {
+            font-size: 9pt;
+            color: #6E543C;
+            margin: 0;
+        }
+
+        /* Testimonial & Footer */
+        .testimonial {
+            background-color: #FFF3DA;
+            border-left: 4px solid #FF8B8B;
+            padding: 15px 20px;
+            margin-bottom: 35px;
+            border-radius: 0 8px 8px 0;
+            page-break-inside: avoid;
+        }
+        .testimonial-quote {
+            font-style: italic;
+            font-size: 10.5pt;
+            color: #4A3728;
+            margin-bottom: 8px;
+        }
+        .testimonial-author {
+            font-weight: bold;
+            font-size: 9.5pt;
+            color: #6E543C;
+        }
+
+        .cta-footer {
+            background-color: #4A3728;
+            color: #FFF8EA;
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 12px;
+            page-break-inside: avoid;
+        }
+        .cta-footer h2 {
+            font-size: 16pt;
+            margin: 0 0 10px 0;
+            color: #FFF8EA;
+        }
+        .cta-footer p {
+            font-size: 10pt;
+            margin: 0 0 20px 0;
+            color: #FFD97D;
+        }
+        .btn-large {
+            padding: 12px 28px;
+            font-size: 11pt;
+            background-color: #FF8B8B;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo">PU<span>SU</span></div>
+        <div class="nav-links">
+            <span>Home</span>
+            <span>Varian Rasa</span>
+            <span>Testimoni</span>
+        </div>
+    </div>
+
+    <div class="hero">
+        <div class="hero-text">
+            <h1 class="headline">Lembutnya Meleleh di Mulut, Manisnya Pas di Hati.</h1>
+            <p class="subheadline">Nikmati kebaikan susu murni dalam setiap suapan Puding Susu PUSU. Dibuat fresh setiap hari, tanpa pengawet, dan punya tekstur selembut sutra.</p>
+            <a href="#" class="btn">Rasakan Kelembutannya Sekarang!</a>
+        </div>
+        <div class="hero-image-container">
+            <div class="placeholder-svg" style="width: 220px; height: 180px; line-height: 180px; font-size: 10pt;">
+                [ Gambar Utama PUSU Puding ]
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title">Mengapa Memilih PUSU?</div>
+    <div class="products-table">
+        <div style="display: table-row;">
+            <div style="display: table-cell; padding: 0 6px;">
+                <div class="feature-card" style="width: 100%;">
+                    <div style="font-size: 20pt; color: #FF8B8B; margin-bottom: 5px;">🥛</div>
+                    <div class="feature-title">100% Susu Segar</div>
+                    <div class="feature-desc">Menggunakan bahan baku susu murni berkualitas tinggi pilihan.</div>
+                </div>
+            </div>
+            <div style="display: table-cell; padding: 0 6px;">
+                <div class="feature-card" style="width: 100%;">
+                    <div style="font-size: 20pt; color: #FF8B8B; margin-bottom: 5px;">✨</div>
+                    <div class="feature-title">Tekstur Silk-Soft</div>
+                    <div class="feature-desc">Rahasia formulasi PUSU menghasilkan tekstur lumer di lidah.</div>
+                </div>
+            </div>
+            <div style="display: table-cell; padding: 0 6px;">
+                <div class="feature-card" style="width: 100%;">
+                    <div style="font-size: 20pt; color: #FF8B8B; margin-bottom: 5px;">🌱</div>
+                    <div class="feature-title">Rendah Gula</div>
+                    <div class="feature-desc">Manisnya pas, tanpa pengawet, aman untuk seluruh keluarga.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title">Varian Rasa Favorit</div>
+    <div class="products-table">
+        <div style="display: table-row;">
+            <div style="display: table-cell; padding: 0 6px;">
+                <div class="product-card" style="width: 100%;">
+                    <div class="placeholder-svg" style="width: 100%; height: 120px; line-height: 120px; font-size: 9pt;">[ Foto: The Original Silk ]</div>
+                    <div class="product-info">
+                        <div class="product-name">The Original Silk</div>
+                        <div class="product-desc">Puding susu klasik berpadu sempurna dengan vla vanilla khas PUSU.</div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: table-cell; padding: 0 6px;">
+                <div class="product-card" style="width: 100%;">
+                    <div class="placeholder-svg" style="width: 100%; height: 120px; line-height: 120px; font-size: 9pt;">[ Foto: Rich Chocolate ]</div>
+                    <div class="product-info">
+                        <div class="product-name">Rich Chocolate</div>
+                        <div class="product-desc">Sensasi cokelat premium yang tebal namun tidak bikin enek.</div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: table-cell; padding: 0 6px;">
+                <div class="product-card" style="width: 100%;">
+                    <div class="placeholder-svg" style="width: 100%; height: 120px; line-height: 120px; font-size: 9pt;">[ Foto: Pandana Custard ]</div>
+                    <div class="product-info">
+                        <div class="product-name">Pandana Custard</div>
+                        <div class="product-desc">Perpaduan lokal yang wangi, gurih, dan menyegarkan.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="testimonial">
+        <div class="testimonial-quote">"Pertama kali nyoba langsung jatuh cinta sama teksturnya. Beneran selembut itu dan manisnya nggak lebay. Anak-anak di rumah juga suka banget!"</div>
+        <div class="testimonial-author">— Clara, Ibu Rumah Tangga & Food Enthusiast</div>
+    </div>
+
+    <div class="cta-footer">
+        <h2>Siap Menikmati Dessert Sehatmu Hari Ini?</h2>
+        <p>Stok terbatas setiap harinya untuk menjaga kesegaran produk.</p>
+        <a href="#" class="btn btn-large">Pesan via WhatsApp Sekarang</a>
+    </div>
+
+</body>
+</html>
+"""
+
+with open("landing_page_pusu.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+from weasyprint import HTML
+HTML("landing_page_pusu.html").write_pdf("landing_page_pusu.pdf")
+print("Files generated successfully.")
